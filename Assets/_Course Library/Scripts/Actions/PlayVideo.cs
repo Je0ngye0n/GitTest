@@ -55,8 +55,25 @@ public class PlayVideo : MonoBehaviour
 
     public void NextClip()
     {
-        index = ++index % videoClips.Count;
+        //index = ++index % videoClips.Count;
         Play();
+        index += 1;
+    }
+
+    public void NextClipAndStop() //가장 마지막 영상에서 트리거 버튼 누를 시 꺼지는 기능 추가
+    {
+            if (!(index == videoClips.Count)) // 가장 마지막 영상이 아닐 시
+            {
+            Debug.Log((index + 1) + "번째 동영상 재생");
+            NextClip();
+            }
+            else // 가장 마지막 영상일 시
+            {
+            Debug.Log("마지막 동영상 재생");
+            Stop();
+                index = 0;
+            Debug.Log($"인덱스 {index}으로 초기화");
+            }
     }
 
     public void PreviousClip()
@@ -85,6 +102,7 @@ public class PlayVideo : MonoBehaviour
 
     public void Play()
     {
+        videoPlayer.clip = videoClips[index];
         videoMaterial.color = Color.white;
         videoPlayer.Play();
     }
