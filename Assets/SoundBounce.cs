@@ -17,8 +17,8 @@ public class SoundBounce : MonoBehaviour
 
     void Start()
     {
-        bounceAudio.AddComponent<AudioSource>();
-        rb.AddComponent<Rigidbody>();
+        bounceAudio.GetComponent<AudioSource>();
+        rb.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
